@@ -26,13 +26,11 @@ Feature: Tests for Target site
     When Click Target Circle
     Then Verify 5 benefit cells are shown
 
-  Scenario Outline: Verify cart addition
+  Scenario: Verify cart addition
     Given Open Target main page
-    When Search for <product>
+    When Search for bread
     Then Click Add to Cart Button
-    Then Click 2nd Add to Cart Button
-    Then Click View Cart Button
+    And Store product name
+    And Click 2nd Add to Cart Button
+    And Click View Cart Button
     Then Verify Cart
-    Examples:
-    |product     |
-    |bread       |
