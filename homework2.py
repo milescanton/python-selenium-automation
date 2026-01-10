@@ -58,7 +58,9 @@ driver.find_element(By.XPATH, "//button[@data-test='accountNav-signIn']").click(
 sleep(3)
 
 #Verify "Sign in or create account" text
+expected_text = 'Sign in or create account'
 actual_text = driver.find_element(By.XPATH, "//h1[contains(@class,'styles_ndsHeading__phw6r')]").text
+assert expected_text == actual_text, f'Expected {expected_text}, but got {actual_text}'
 print(actual_text)
 
 #Verify 'Sign in with passkey' button
