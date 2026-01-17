@@ -4,14 +4,9 @@ from behave import given, when, then
 from time import sleep
 
 
-SEARCH_RESULTS_TEXT = (By.XPATH, "//div[contains(@class,'styles_listingPageResultsCount')]")
-ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")  # always clicks on 1st Add to cart btn
-SIDE_NAV_ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*='addToCart']")
-SIDE_NAV_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
-SIDE_NAV_VIEW_CART_BTN = (By.CSS_SELECTOR, "[href='/cart']")
-LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
-PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
-PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
+# LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
+# PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
+# PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
 
 
 @then('Search results for {expected_product} are shown')
@@ -19,37 +14,28 @@ def verify_search_results(context, expected_product):
     context.app.search_results_page.verify_search_results(expected_product)
 
 
-# @then('Click Add to Cart Button')
-# def click_add_to_cart_button(context):
-#     sleep(10)
-#     context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
-#
-#
-# @then('Store product name')
-# def store_product_name(context):
-#     context.product_before_adding = context.driver.find_element(*SIDE_NAV_PRODUCT_NAME).text
-#     # print("Name saved: ")
-#     # print(context.product_before_adding)
-#
-#
-# @then('Click 2nd Add to Cart Button')
-# def click_2nd_add_to_cart_button(context):
-#     context.driver.wait.until(
-#         EC.presence_of_element_located(SIDE_NAV_ADD_TO_CART_BTN),
-#         message='Side Navigation Add to Cart button did not appear'
-#     )
-#     context.driver.find_element(*SIDE_NAV_ADD_TO_CART_BTN).click()
-#
-#
-# @then('Click View Cart Button')
-# def click_view_cart_button(context):
-#     context.driver.wait.until(
-#         EC.presence_of_element_located(SIDE_NAV_VIEW_CART_BTN),
-#         message='Side Navigation View Cart button did not appear'
-#     )
-#     context.driver.find_element(*SIDE_NAV_VIEW_CART_BTN).click()
-#
-#
+@then('Click Add to Cart Button')
+def click_add_to_cart_btn(context):
+    sleep(10)
+    context.app.search_results_page.click_add_to_cart_btn()  # always clicks on 1st Add to cart btn
+
+
+@then('Store product name')
+def store_product_name(context):
+    context.product_before_adding = context.app.search_results_page.store_product_name()
+    print(context.product_before_adding)
+
+
+@then('Click 2nd Add to Cart Button')
+def click_2nd_add_to_cart_btn(context):
+    context.app.search_results_page.click_2nd_add_to_cart_btn()
+
+
+@then('Click View Cart Button')
+def click_view_cart_btn(context):
+    context.app.search_results_page.click_view_cart_btn()
+
+
 # @then('Verify that every product has a name and an image')
 # def verify_products_name_img(context):
 #     # To see ALL listings (comment out if you only check top ones):

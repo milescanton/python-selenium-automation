@@ -15,25 +15,25 @@ Feature: Tests for Target site
     When Click on cart icon
     Then Empty Cart message is shown
 
-#  Scenario: Verify ability to open Sign In form
-#    Given Open Target main page
-#    When Click Account button
-#    Then Click Sign In button
-#    Then Verify Sign In page
-#
+  Scenario: Verify ability to open Sign In form
+    Given Open Target main page
+    When Click Account button
+    Then Click Sign In button
+    Then Verify Sign In page
+
+    Scenario: Verify cart addition
+      Given Open Target main page
+      When Search for bread
+      Then Click Add to Cart Button
+      And Store product name
+      And Click 2nd Add to Cart Button
+      And Click View Cart Button
+      Then Verify Cart
+
 #  Scenario: Verify benefit cells
 #    Given Open Target main page
 #    When Click Target Circle
 #    Then Verify 5 benefit cells are shown
-#
-#  Scenario: Verify cart addition
-#    Given Open Target main page
-#    When Search for bread
-#    Then Click Add to Cart Button
-#    And Store product name
-#    And Click 2nd Add to Cart Button
-#    And Click View Cart Button
-#    Then Verify Cart
 #
 #  Scenario: Verify that user can see product names and images
 #    Given Open Target main page
