@@ -12,6 +12,9 @@ class Page:
     def open_url(self, end_url=''):
         self.driver.get(f'{self.base_url}{end_url}')
 
+    def close_page(self):
+        self.driver.close()
+
     def get_current_url(self):
         return self.driver.current_url
 
@@ -30,6 +33,20 @@ class Page:
     def store_text(self, *locator):
         stored_text = self.driver.find_element(*locator)
         return stored_text.text
+
+    def get_current_window_handle(self):
+        return self.driver.current_window_handle
+
+    def switch_to_new_window(self):
+        self.driver.wait.until(EC.new_window_is_opened)
+        all_windows = self.driver.window_handles
+        print('All windows: ', all_windows)
+        print('Switching to window: ', all_windows[1])
+        self.driver.switch_to.window(all_windows[1])
+
+    def switch_to_window_by_id(self, window_id):
+        print('Switching to window: ', window_id)
+        self.driver.switch_to.window(window_id)
 
     def wait_until_element_present(self, *locator):
         self.driver.wait.until(
@@ -60,6 +77,7 @@ class Page:
             EC.url_contains(expected_partial_url),
             message=f'Expected {expected_partial_url} not in {self.driver.current_url}.'
         )
+
 
     def verify_partial_text(self, expected_partial_text, *locator):
         actual_text = self.find_element(*locator).text

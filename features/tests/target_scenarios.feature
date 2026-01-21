@@ -30,6 +30,14 @@ Feature: Tests for Target site
       And Click View Cart Button
       Then Verify Cart
 
+    Scenario: User can open and close Terms and Conditions from Sign In page
+      Given Open Sign In page
+      When Store original window
+      And Click on Target Terms and Conditions link
+      And Switch to new window
+      Then Verify Terms and Conditions page is opened
+      And Return to original window
+
 #  Scenario: Verify benefit cells
 #    Given Open Target main page
 #    When Click Target Circle
